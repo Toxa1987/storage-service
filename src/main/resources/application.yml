@@ -1,0 +1,27 @@
+server:
+  port: 8084
+spring:
+  application:
+    name: storage-service
+  datasource:
+    driverClassName: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://${DB_HOST:localhost}:3306/Storages
+    username: ${name:root}
+    password: ${password:password}
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect
+        dll-auto: none
+    show-sql: true
+    sql:
+      init:
+        mode: never
+  cloud:
+    loadbalancer:
+      ribbon:
+        enabled: false
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://${EUREKA_HOST:localhost}:8761/eureka
