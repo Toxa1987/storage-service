@@ -5,7 +5,7 @@ spring:
     name: storage-service
   datasource:
     driverClassName: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://${DB_HOST:localhost}:3306/Storages
+    url: jdbc:mysql://${DB_HOST:localhost}:3306/Songs
     username: ${name:root}
     password: ${password:password}
   jpa:
@@ -14,9 +14,9 @@ spring:
         dialect: org.hibernate.dialect.MySQL8Dialect
         dll-auto: none
     show-sql: true
-    sql:
-      init:
-        mode: never
+  sql:
+    init:
+      mode: always
   cloud:
     loadbalancer:
       ribbon:
@@ -25,3 +25,6 @@ eureka:
   client:
     serviceUrl:
       defaultZone: http://${EUREKA_HOST:localhost}:8761/eureka
+aws:
+  region: us-east-1
+  endpoint: http://${AWS_HOST:localhost}:4566/
